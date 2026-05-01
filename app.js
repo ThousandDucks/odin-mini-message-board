@@ -26,6 +26,27 @@ app.get("/new", (req, res) => {
     res.render("form")
 })
 
+app.get("/messages/:id", (req, res) => {
+    const id = req.params.id;
+    const message = messages[id];
+
+    res.render("messageDetail", { message });
+});
+
+app.use(express.urlencoded({ extended: true }));
+
+app.post("/new", (req, res) => {
+    
+    const newMessage = {
+        text: req.body.messageText,
+        user: req.body.username,
+        added: new Date()
+    };
+
+    messages.push(newMessage);
+    res.redirect("/")
+})
+
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
