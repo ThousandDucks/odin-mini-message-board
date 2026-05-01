@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
   res.render("index", { title: "Mini Messageboard", messages: messages })
 });
 
+app.get("/new", (req, res) => {
+    res.render("form")
+})
+
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
